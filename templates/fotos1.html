@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Junho?Julho</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 80%;
+            border-radius: 10px;
+        }
+
+        .close, .prev, .next {
+            position: absolute;
+            top: 20px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        .close {
+            right: 30px;
+        }
+
+        .prev {
+            left: 30px;
+        }
+
+        .next {
+            right: 90px;
+        }
+    </style>
+</head>
+<body>
+    
+<div class="content">
+    <h1> Nosso Pequeno Junho!! </h1>
+    <p>Eu te agradeço por esse começo minha ruivinha! </p>
+    <a href="https://open.spotify.com/intl-pt/track/5Y1mguQcl8TbHgS12atuVy?si=9f01ad2221374ce7" target="_blank">
+        <button class="spotify-button">Música que me lembra você amor :)</button>
+    </a>
+    
+    <div class="gallery-grid">
+        <img src="{{ url_for('static', filename='img/junho1.jpg') }}" alt="Foto 1" onclick="openLightbox(0)">
+        <img src="{{ url_for('static', filename='img/junho2.jpg') }}" alt="Foto 2" onclick="openLightbox(1)">
+        <img src="{{ url_for('static', filename='img/junho3.jpg') }}" alt="Foto 3" onclick="openLightbox(2)">
+        <img src="{{ url_for('static', filename='img/junho4.jpg') }}" alt="Foto 4" onclick="openLightbox(3)">
+        <img src="{{ url_for('static', filename='img/junho6.jpg') }}" alt="Foto 6" onclick="openLightbox(4)">
+        <img src="{{ url_for('static', filename='img/junho7.jpg') }}" alt="Foto 7" onclick="openLightbox(5)">
+        <img src="{{ url_for('static', filename='img/junho8.jpg') }}" alt="Foto 8" onclick="openLightbox(6)">
+        <img src="{{ url_for('static', filename='img/junho9.jpg') }}" alt="Foto 9" onclick="openLightbox(7)">
+        <img src="{{ url_for('static', filename='img/junho10.jpg') }}" alt="Foto 10" onclick="openLightbox(8)">
+        <img src="{{ url_for('static', filename='img/junho11.jpg') }}" alt="Foto 11" onclick="openLightbox(9)">
+        <img src="{{ url_for('static', filename='img/junho12.jpg') }}" alt="Foto 12" onclick="openLightbox(10)">
+        <img src="{{ url_for('static', filename='img/junho13.jpg') }}" alt="Foto 13" onclick="openLightbox(11)">
+        <img src="{{ url_for('static', filename='img/junho14.jpg') }}" alt="Foto 14" onclick="openLightbox(12)">
+        <img src="{{ url_for('static', filename='img/junho15.jpg') }}" alt="Foto 15" onclick="openLightbox(13)">
+        <img src="{{ url_for('static', filename='img/junho16.jpg') }}" alt="Foto 16" onclick="openLightbox(14)">
+        <img src="{{ url_for('static', filename='img/junho17.jpg') }}" alt="Foto 17" onclick="openLightbox(15)">
+        <img src="{{ url_for('static', filename='img/junho18.jpg') }}" alt="Foto 18" onclick="openLightbox(16)">
+        <img src="{{ url_for('static', filename='img/junho19.jpg') }}" alt="Foto 19" onclick="openLightbox(17)">
+    </div>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+    <span class="close" onclick="closeLightbox()">&times;</span>
+    <span class="prev" onclick="changeSlide(-1)">&#10094;</span>
+    <img id="lightbox-img" src="" alt="Foto Ampliada">
+    <span class="next" onclick="changeSlide(1)">&#10095;</span>
+</div>
+
+<script>
+    const images = [
+        "{{ url_for('static', filename='img/junho1.jpg') }}",
+        "{{ url_for('static', filename='img/junho2.jpg') }}",
+        "{{ url_for('static', filename='img/junho3.jpg') }}",
+        "{{ url_for('static', filename='img/junho4.jpg') }}",
+        "{{ url_for('static', filename='img/junho6.jpg') }}",
+        "{{ url_for('static', filename='img/junho7.jpg') }}",
+        "{{ url_for('static', filename='img/junho8.jpg') }}",
+        "{{ url_for('static', filename='img/junho9.jpg') }}",
+        "{{ url_for('static', filename='img/junho10.jpg') }}",
+        "{{ url_for('static', filename='img/junho11.jpg') }}",
+        "{{ url_for('static', filename='img/junho12.jpg') }}",
+        "{{ url_for('static', filename='img/junho13.jpg') }}",
+        "{{ url_for('static', filename='img/junho14.jpg') }}",
+        "{{ url_for('static', filename='img/junho15.jpg') }}",
+        "{{ url_for('static', filename='img/junho16.jpg') }}",
+        "{{ url_for('static', filename='img/junho17.jpg') }}",
+        "{{ url_for('static', filename='img/junho18.jpg') }}",
+        "{{ url_for('static', filename='img/junho19.jpg') }}"
+    ];
+
+    let currentSlide = 0;
+
+    function openLightbox(index) {
+        currentSlide = index;
+        document.getElementById("lightbox-img").src = images[currentSlide];
+        document.getElementById("lightbox").classList.add("active");
+    }
+
+    function closeLightbox() {
+        document.getElementById("lightbox").classList.remove("active");
+    }
+
+    function changeSlide(direction) {
+        currentSlide += direction;
+        if (currentSlide < 0) {
+            currentSlide = images.length - 1;
+        } else if (currentSlide >= images.length) {
+            currentSlide = 0;
+        }
+        document.getElementById("lightbox-img").src = images[currentSlide];
+    }
+</script>
+</body>
+</html>

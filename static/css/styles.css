@@ -1,0 +1,144 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #3f3f3f; 
+    margin: 0;
+    padding: 0;
+    background-image: url('../img/gif1.gif'); 
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center; 
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    flex-direction: row; /* Garante que a sidebar e o conteúdo estejam lado a lado */
+}
+
+.sidebar {
+    background-color: #ffffff;
+    padding: 20px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar button {
+    background-color: #ffae00;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 15px;
+    margin: 10px 0;
+    width: 100%;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar button:hover {
+    background-color: #161616;
+}
+
+.spotify-button {
+    background-color: #ff6f20; /* Laranja */
+    color: #ffffff; /* Texto branco */
+    border: none;
+    padding: 15px 20px; /* Espaçamento interno */
+    margin: 10px 0;
+    width: auto; /* Ajuste automático para o conteúdo */
+    font-size: 18px; /* Tamanho da fonte */
+    font-weight: bold; /* Fonte em negrito */
+    border-radius: 30px; /* Bordas arredondadas */
+    cursor: pointer; /* Mão ao passar o mouse */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Efeitos de transição */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+
+.spotify-button:hover {
+    background-color: #e55d20; /* Tom mais escuro ao passar o mouse */
+    transform: scale(1.05); /* Aumenta ligeiramente o botão ao passar o mouse */
+}
+
+.content {
+    flex: 1;
+    padding: 50px;
+    text-align: center;
+    color: #ffae00;
+}
+
+h1 {
+    color: #ffffff;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    justify-items: center;
+    padding: 20px;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.05);
+}
+
+.lightbox {
+    display: none; 
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+.lightbox-content {
+    max-width: 90%;
+    max-height: 80%;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: rgb(255, 255, 255);
+    font-size: 40px;
+    cursor: pointer;
+}
+
+/* Media Query para dispositivos móveis */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Muda a direção do flex para coluna */
+    }
+
+    .sidebar {
+        width: 100%; /* A sidebar ocupa toda a largura em dispositivos móveis */
+    }
+
+    .content {
+        padding: 20px; /* Reduz o padding no conteúdo */
+    }
+}
